@@ -1,9 +1,0 @@
-{
-  "name": "Notepad",
-  "description": "Package for notepad realtime updates",
-  "author": "Muhammad Faridi <mfxtreme@bk.ru>",
-  "dependencies": {
-    "express": "*",
-    "socket.io": "*"
-  }
-}
