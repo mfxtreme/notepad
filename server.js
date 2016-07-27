@@ -16,12 +16,11 @@ const io = socketIO(server);
 io.on('connection', function (socket) {
 	socket.on('join_room',function(room){
 		socket.join(room);
-		socket.in(room).emit('joined_room', 'true');
 	});
-
-    socket.on('blob', function (room) {
-		socket.in(room.name).emit('some_typing', {cur_loc:room.cursor_location});
-    });
+	
+	socket.on('editing', function (room) {
+		socket.in(room.name).emit('update', {data:room.data});
+	});
 	socket.on('disconnect', function(){
 		if (io.sockets.connected[socket.id]) {
 			io.sockets.connected[socket.id].disconnect();
