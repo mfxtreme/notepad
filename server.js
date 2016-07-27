@@ -19,7 +19,7 @@ io.on('connection', function (socket) {
 	});
 	
 	socket.on('editing', function (room) {
-		socket.in(room.name).emit('update', {data:room.data});
+		socket.in(room.name).emit('update', {data:room.stuffs});
 	});
 	socket.on('disconnect', function(){
 		if (io.sockets.connected[socket.id]) {
