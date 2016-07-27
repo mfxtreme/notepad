@@ -19,7 +19,10 @@ io.on('connection', function (socket) {
 	});
 	
 	socket.on('editing', function (room) {
-		socket.in(room.name).emit('update', {text:room.text,cursor_location:room.cursor_location});
+		var count = io.sockets.adapter.rooms[room];
+		if (count.length >= 1) {
+			socket.in(room.name).emit('update', {text:room.text,cursor_location:room.cursor_location});
+		}
 	});
 	socket.on('disconnect', function(){
 		if (io.sockets.connected[socket.id]) {
